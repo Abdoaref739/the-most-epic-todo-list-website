@@ -1,20 +1,17 @@
 let sendBtn = document.getElementById("send-button");
-let checkbox;
-let todoTitle;
-let noItemsFoundDiv;
-let inputField;
-let message;
-let trashIcon;
+let tasksCount = 0;
+let addedTasksCount;
+let checkedTasksCount;
 sendBtn.addEventListener("click", function(){
-        inputField = document.getElementById("input-field").value;
+        let inputField = document.getElementById("input-field").value;
         if(inputField !== ""){
-                trashIcon = document.createElement("i");
+                let trashIcon = document.createElement("i");
                 trashIcon.setAttribute("class", "fa-solid fa-trash")
                 trashIcon.style.cursor = "pointer";
-                noItemsFoundDiv = document.querySelector(".no-item-found-div");
-                checkbox = document.createElement("INPUT");
-                message = document.createElement("div");
-                todoTitle =  document.createElement("span");
+                let noItemsFoundDiv = document.querySelector(".no-item-found-div");
+                let checkbox = document.createElement("INPUT");
+                let message = document.createElement("div");
+                let todoTitle =  document.createElement("span");
 
 
                 checkbox.setAttribute("type", "checkbox");
@@ -31,16 +28,30 @@ sendBtn.addEventListener("click", function(){
                 message.appendChild(checkbox);
                 message.appendChild(trashIcon);
 
-                checkbox.addEventListener("click", function(){
-                confetti({
-                        color: ["#21242b", "#1d232b", "#171c22"]
-                });
-                todoTitle.style.textDecorationLine = "line-through";
-        })
 
+
+                checkbox.addEventListener("click", function(){
+                        checkedTasksCount = tasksCount - 1;
+                        confetti({
+                                color: ["#21242b", "#1d232b", "#171c22"]
+                        });
+                        todoTitle.style.textDecorationLine = "line-through";
+                        checkbox.disabled = true;
+        })
                 trashIcon.addEventListener("click", function(){
-                        parent.style.display = "none";
+                        message.remove();
                 })
+                tasksCount += 1;
+                
         }
 });
+        setInterval(() =>{
+        let completionBar = document.getElementById("completion-bar");
+        let completionNumber = document.getElementById("completion-percentage");
+        let completionPercentile = Math.floor((checkedTasksCount / tasksCount) * 100);
+        completionBar.style.width = `${completionPercentile}%`;
+        completionNumber.textContent = `${completionPercentile}%`;
+        
+        }, 1000);
+
 

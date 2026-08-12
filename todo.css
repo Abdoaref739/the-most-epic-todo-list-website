@@ -28,6 +28,39 @@ body{
     font-family: "TitleFont", sans-serif;
     color: #F2F4F7;
 }
+.tasks-completed{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 40%;
+    height: 35px;
+    background-color: #171A1F;
+    margin-top: 30px;
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+#completion-percentage{
+    font-size: 20px;
+    color: white;
+    font-family: "TextFont2", sans-serif;
+    margin-top: 3px;
+}
+#completion-bar-div{
+    display: flex;
+    align-items: center;
+    width: 55%;
+    height: 75%;
+    margin-left: 10px;
+    border-radius: 5px;
+    margin-top: 3px;
+}
+#completion-bar{
+    height: 85%;
+    background-color: #F2F4F7;
+    border-radius: 5px;
+}
 .container{
     display: flex;
     justify-content: center;
@@ -38,7 +71,7 @@ body{
     padding: 20px;
     background-color: #171A1F;
     border-radius: 15px;
-    margin-top: 50px;
+    margin-top: 0px;
 }
 .input-div{
     display: flex;
@@ -155,5 +188,15 @@ footer > span{
     }
     .no-item-found-div > img{
         width: 130%;
+    }
+    .tasks-completed{
+        width: 65%;
+    }
+    input[type="checkbox"]{
+        margin-left: 65%;
+    }
+    .container{
+        width: fit-content;
+        max-width: 90%;
     }
 }
